@@ -3,22 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: sample
-  name: sample
+    app: ${JOB_NAME}
+  name: ${JOB_NAME}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample
+      app: ${JOB_NAME}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: sample
+        build_number: ${BUILD_NUMBER}
+        app: ${JOB_NAME}
     spec:
       containers:
-      - image: sample
+      - image: ${JOB_NAME}:latest
         imagePullPolicy: IfNotPresent
-        name: sample
+        name: ${JOB_NAME}
         ports:
         - containerPort: 8080

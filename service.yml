@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: sample
-  name: sample
+    app: ${JOB_NAME}
+  name: ${JOB_NAME}
 spec:
   ports:
   - port: 8080
@@ -12,7 +12,7 @@ spec:
     nodePort: 30080
     targetPort: 8080
   selector:
-    app: sample
+    app: ${JOB_NAME}
   type: NodePort
 status:
   loadBalancer: {}
