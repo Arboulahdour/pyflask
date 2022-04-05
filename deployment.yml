@@ -6,7 +6,7 @@ metadata:
     app: ${JOB_NAME}
   name: ${JOB_NAME}
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: ${JOB_NAME}
