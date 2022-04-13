@@ -1,3 +1,11 @@
-FROM tomcat:latest
-COPY ./sample.war /usr/local/tomcat/webapps
-#CMD ["catalina.sh", "run"]
+FROM python:3
+
+ADD . /python-flask
+
+WORKDIR /python-flask
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python3", "main.py"]

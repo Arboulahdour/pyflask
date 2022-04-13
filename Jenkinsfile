@@ -2,8 +2,8 @@ pipeline {
 
   environment {
     JOB_NAME = "${JOB_NAME}"
-    GIT_REPO = "https://github.com/Arboulahdour/sample.git"
-    DOCKER_IMAGE = "arboulahdour/sample"
+    GIT_REPO = "https://github.com/Arboulahdour/pyflask.git"
+    DOCKER_IMAGE = "arboulahdour/pyflask"
     REGISTRY_CRED = "docker-hub-creds"
   }
 
@@ -35,14 +35,6 @@ pipeline {
         }
       }
     }
-
-    // stage('Deploy App') {
-    //   steps {
-    //     script {
-    //       kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
-    //     }
-    //   }
-    // }
 
   }
 
