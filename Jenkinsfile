@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    JOB_NAME = "${JOB_NAME}"
+    APP_NAME = "${JOB_NAME}"
     GIT_REPO = "https://github.com/Arboulahdour/pyflask.git"
     DOCKER_IMAGE = "arboulahdour/pyflask"
     REGISTRY_CRED = "docker-hub-creds"
@@ -13,7 +13,11 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git([url: "$GIT_REPO", branch: 'master', credentialsId: 'github-user-token'])
+        git([url: "$GIT_REPO", 
+             branch: 'master', 
+             credentialsId: 'github-user-token'
+          ]
+        )
       }
     }
 
@@ -30,12 +34,15 @@ pipeline {
         script {
           docker.withRegistry( '', REGISTRY_CRED ) {
             dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
           }
         }
       }
     }
 
+    stage('Deploy Application') {
+      steps{
+        sh "docker run -d --name $APP_NAME -p 5000:5000 $DOCKER_IMAGE:$BUILD_NUMBER"
+      }
+    }
   }
-
 }
