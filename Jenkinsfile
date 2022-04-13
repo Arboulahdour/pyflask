@@ -13,7 +13,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git "$GIT_REPO", branch: 'master', credentialsId: 'github-user-token'
+        git([url: "$GIT_REPO", branch: 'master', credentialsId: 'github-user-token'])
       }
     }
 
