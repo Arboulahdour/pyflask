@@ -41,7 +41,7 @@ pipeline {
 
     stage('Deploy Application') {
       steps{
-        sh "docker run -d --name $APP_NAME -p 5000:5000 $DOCKER_IMAGE:$BUILD_NUMBER"
+        sh "docker run -d --name $APP_NAME -p 5000:80 $DOCKER_IMAGE:$BUILD_NUMBER"
       }
     }
   }

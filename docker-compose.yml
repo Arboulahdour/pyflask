@@ -1,9 +1,8 @@
 version: "3"
 services:
   app:
-    build: .
-#    command: python main.py
+    image: arboulahdour/pyflask:2.0.0
     ports:
-      - "5000:5000"
+      - "5000:80"
     volumes:
       - .:/python-flask
