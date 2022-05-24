@@ -52,4 +52,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: arboulahdour/pyflask:2.0.0
+          tags: arboulahdour/pyflask:1.0.0
