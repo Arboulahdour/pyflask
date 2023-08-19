@@ -1,0 +1,15 @@
+version: "3"
+services:
+  app:
+    container_name: pyflask
+    image: arboulahdour/pyflask:0.1.0
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/pyflask
+    networks:
+      - pyflask-net
+networks:
+  networks:
+    name: pyflask-net
