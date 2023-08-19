@@ -6,8 +6,10 @@ services:
     restart: unless-stopped
     ports:
       - "5000:5000"
-    volumes:
-      - .:/pyflask
+    environment:
+      - VERSION=0.1.0
+    # volumes:
+    #   - .:/pyflask
     networks:
       - pyflask-net
 networks:

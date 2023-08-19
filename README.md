@@ -20,13 +20,35 @@ I have already developed the Dockerfile and python app and it is provided below,
 
 ~~~sh
 from flask import Flask, jsonify
+from datetime import datetime
+import os
+import psutil
+import platform
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return jsonify({'Python': 'Flask Application v0.1.0 !!!'})
+    python_version = platform.python_version()
+    memory_usage = psutil.virtual_memory()
+    cpu_usage = psutil.cpu_percent(interval=1)
+    process_id = os.getpid()
+    boot_time = psutil.boot_time()
+    uptime_seconds = int((datetime.now().timestamp() - boot_time))
+    return jsonify({'name': 'pyflask',
+                    'appVersion': os.environ['VERSION'],
+                    'pythonVersion': python_version,
+                    'status': 'running',
+                    'uptime': uptime_seconds,
+                    'memoryUsage': {
+                      'total': memory_usage.total,
+                      'available': memory_usage.available,
+                      'used': memory_usage.used
+                    },
+                    'cpuUsage': cpu_usage,
+                    'processId': process_id
+                })
 
 
 if __name__ == '__main__':
@@ -36,7 +58,7 @@ if __name__ == '__main__':
 ### Dockerfile
 
 ~~~sh
-FROM python:3
+FROM python:3.7.17-slim
 
 ADD . /pyflask
 
@@ -59,7 +81,7 @@ git clone https://github.com/Arboulahdour/pyflask.git
 Go to the directory and run the following command to build the Docker image. The -t flag lets you tag your image so it's easier to find later using the docker images command:
 ~~~sh
 cd pyflask/
-docker build -t <your username>/pyflask:0.1.0 . 
+docker build -t pyflask:0.1.0 . 
 
 or
 
@@ -73,7 +95,7 @@ docker image ls
 
 Now run the container from the Image created:
 ~~~sh
-docker container run --name pyflask -p 5000:5000 -d arboulahdour/pyflask:0.1.0
+docker container run --name pyflask -e VERSION=0.1.0 -p 5000:5000 -d pyflask:0.1.0
 
 or
 
