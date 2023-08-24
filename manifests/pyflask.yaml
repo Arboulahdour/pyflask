@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyflask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:   
+      app: pyflask 
+  template:
+    metadata:
+      labels:
+        app: pyflask
+    spec:                      
+      containers:
+      - name: pyflask
+        image: arboulahdour/pyflask:v0.1.0
+        env:
+          - name: VERSION
+            value: "v0.1.0"
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyflask
+  labels:
+    app: pyflask
+spec:
+  type: NodePort
+  selector:
+    app: pyflask
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30080
