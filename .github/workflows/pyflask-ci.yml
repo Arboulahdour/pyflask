@@ -1,4 +1,5 @@
-# name: CI Pipeline For a Flask App
+name: CI Pipeline For a Flask App
 
 on:
   workflow_dispatch:
+  
