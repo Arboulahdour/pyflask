@@ -15,7 +15,7 @@ spec:
     spec:                      
       containers:
       - name: pyflask
-        image: arboulahdour/pyflask:v0.1.1
+        image: arboulahdour/pyflask:v0.1.0
         env:
           - name: VERSION
             value: "v0.1.0"
