@@ -1,0 +1,29 @@
+### Default Values:
+
+kind: Deployment
+
+namespace: pyflask-staging
+
+replicaCount: 1
+
+image:
+  name: arboulahdour/pyflask
+  tag: v0.1.1
+  pullPolicy: Always
+
+containerPort:
+  api: 5000
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+service:
+  type: NodePort
+  port: 5000
+  targetPort: 5000
+  nodePort: 30080

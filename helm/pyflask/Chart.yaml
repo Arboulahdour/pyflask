@@ -1,0 +1,14 @@
+apiVersion: v2
+appVersion: v0.1.1
+description: Helm chart for pyflask application.
+home: https://github.com/Arboulahdour/pyflask.git
+keywords:
+  - python
+  - flask
+kubeVersion: ">=1.18.0-0"
+maintainers:
+  - name: Abderrahmane Boulahdour
+    url: www.stackios.com
+name: pyflask
+type: application
+version: v0.1.0

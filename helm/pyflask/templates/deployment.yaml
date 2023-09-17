@@ -1,0 +1,33 @@
+{{- if eq .Values.kind "Deployment" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: pyflask
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: pyflask
+  template:
+    metadata:
+      labels:
+        app: pyflask
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: VERSION
+            value: {{ .Values.image.tag }}
+        {{- if .Values.resources }}
+        resources:
+        {{ toYaml .Values.resources | nindent 12 }}
+        {{- end }}
+        ports:
+          - name: api
+            containerPort: {{ .Values.containerPort.api }}
+{{- end }}
