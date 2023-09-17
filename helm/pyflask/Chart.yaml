@@ -11,4 +11,4 @@ maintainers:
     url: www.stackios.com
 name: pyflask
 type: application
-version: v0.1.0
+version: v0.1.1

@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Arboulahdour/pyflask.git
-    targetRevision: v0.1.0
+    targetRevision: v0.1.1
     path: helm/pyflask
     helm:
       valueFiles:
