@@ -4,15 +4,13 @@ on:
 
 jobs:
   build:
+    name: Job for "${{ GITHUB_REF#refs/heads/ }}"
     runs-on: ubuntu-latest
     #if: startsWith(github.ref, 'refs/tags/')
     steps:
       -
-        name: Checkout ${GITHUB_REF#refs/heads/}
+        name: Checkout 
         uses: actions/checkout@v3
-      -
-        name: echo '${GITHUB_REF#refs/heads/}'
-        run: echo '${GITHUB_REF#refs/heads/}'
       -
         name: echo "${GITHUB_REF#refs/heads/}"
         run: echo "${GITHUB_REF#refs/heads/}"
