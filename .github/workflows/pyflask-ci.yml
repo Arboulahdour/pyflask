@@ -5,8 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
+    #if: startsWith(github.ref, 'refs/tags/')
     steps:
       -
-        name: Checkout
+        name: Checkout ${GITHUB_REF#refs/heads/}
         uses: actions/checkout@v3
